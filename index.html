@@ -51,36 +51,44 @@
     <button id="close">close</button>
     <button id="setText" text="Test">setText</button>
     <script>
-      const {
-        isExpanded,
-        colorScheme,
-        viewportHeight,
-        viewportStableHeight,
-        expand,
-        close,
-        MainButton,
-      } = window.Telegram.WebApp;
-      document.querySelector(
-        '#colorScheme'
-      ).textContent = `colorScheme: ${colorScheme}`;
-      document.querySelector(
-        '#isExpanded'
-      ).textContent = `isExpanded: ${isExpanded}`;
-      document.querySelector(
-        '#viewportHeight'
-      ).textContent = `viewportHeight: ${viewportHeight}`;
-      document.querySelector(
-        '#viewportStableHeight'
-      ).textContent = `viewportStableHeight: ${viewportStableHeight}`;
+      function init() {
+        const {
+          isExpanded,
+          colorScheme,
+          viewportHeight,
+          viewportStableHeight,
+          expand,
+          close,
+          MainButton,
+        } = window.Telegram.WebApp;
+        document.querySelector(
+          '#colorScheme'
+        ).textContent = `colorScheme: ${colorScheme}`;
+        document.querySelector(
+          '#isExpanded'
+        ).textContent = `isExpanded: ${isExpanded}`;
+        document.querySelector(
+          '#viewportHeight'
+        ).textContent = `viewportHeight: ${viewportHeight}`;
+        document.querySelector(
+          '#viewportStableHeight'
+        ).textContent = `viewportStableHeight: ${viewportStableHeight}`;
+      }
+
       document.querySelector('#expand').onclick = expand;
       document.querySelector('#close').onclick = close;
-
       const setTextEl = document.querySelector('#setText');
       setTextEl.onclick = () => {
+        console.log(MainButton);
         const text = setTextEl.getAttribute('text') == 'Test' ? 'Main' : 'Test';
         setTextEl.setAttribute('text', text);
         MainButton.setText(text);
       };
+
+      const { onEvent } = window.Telegram.WebApp;
+      onEvent('viewportChanged', () => {
+        init();
+      });
     </script>
   </body>
 </html>

@@ -50,7 +50,10 @@
     <p id="viewportStableHeight"></p>
     <button id="expand">expand</button>
     <button id="close">close</button>
-    <button id="setText" text="Test">setText</button>
+    <button id="showButton">show button</button>
+    <button id="hideButton">hide button</button>
+    <input id="buttonText" />
+    <button id="setText">set text</button>
     <script>
       function init() {
         const {
@@ -76,13 +79,11 @@
       const { onEvent, expand, close, MainButton } = window.Telegram.WebApp;
       document.querySelector('#expand').onclick = expand;
       document.querySelector('#close').onclick = close;
-      const setTextEl = document.querySelector('#setText');
-      setTextEl.onclick = () => {
-        console.log(MainButton);
-        const text = setTextEl.getAttribute('text') == 'Test' ? 'Main' : 'Test';
-        setTextEl.setAttribute('text', text);
-        MainButton.setText(text);
-        MainButton.show();
+      document.querySelector('#showButton').onclick = MainButton.show;
+      document.querySelector('#hideButton').onclick = MainButton.hide;
+
+      document.querySelector('#setText').onclick = () => {
+        MainButton.setText(document.querySelector('#buttonText').textContent);
       };
 
       onEvent('viewportChanged', () => {

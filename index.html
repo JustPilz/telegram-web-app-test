@@ -58,9 +58,6 @@
           colorScheme,
           viewportHeight,
           viewportStableHeight,
-          expand,
-          close,
-          MainButton,
         } = window.Telegram.WebApp;
         document.querySelector(
           '#colorScheme'
@@ -76,6 +73,7 @@
         ).textContent = `viewportStableHeight: ${viewportStableHeight}`;
       }
 
+      const { onEvent, expand, close, MainButton } = window.Telegram.WebApp;
       document.querySelector('#expand').onclick = expand;
       document.querySelector('#close').onclick = close;
       const setTextEl = document.querySelector('#setText');
@@ -87,7 +85,6 @@
         MainButton.show();
       };
 
-      const { onEvent } = window.Telegram.WebApp;
       onEvent('viewportChanged', () => {
         init();
       });

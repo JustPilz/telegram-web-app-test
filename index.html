@@ -84,6 +84,7 @@
         const text = setTextEl.getAttribute('text') == 'Test' ? 'Main' : 'Test';
         setTextEl.setAttribute('text', text);
         MainButton.setText(text);
+        MainButton.show();
       };
 
       const { onEvent } = window.Telegram.WebApp;

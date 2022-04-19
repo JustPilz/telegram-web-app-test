@@ -26,8 +26,16 @@
         width: 64px;
         height: 64px;
       }
+      .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin: 10px;
+      }
       button {
         padding: 10px;
+        min-width: 120px;
+        margin: 10px;
       }
     </style>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -37,23 +45,39 @@
     </script>
   </head>
   <body>
+    <div class="controls">
+      <p id="version">version: 1</p>
+      <p id="colorScheme"></p>
+      <p id="isExpanded"></p>
+      <p id="viewportHeight"></p>
+      <p id="viewportStableHeight"></p>
+      <div class="field">
+        <button id="expand">expand</button>
+        <button id="close">close</button>
+      </div>
+      <div class="field">
+        <button id="showButton">show button</button>
+        <button id="hideButton">hide button</button>
+      </div>
+      <div class="field">
+        <button id="disableButton">disable button</button>
+        <button id="enableButton">enable button</button>
+      </div>
+      <div class="field">
+        <button id="showProgress">show progress</button>
+        <button id="hideProgress">hide progress</button>
+      </div>
+      <div class="field">
+        <input id="buttonText" />
+        <button id="setText">set text</button>
+      </div>
+    </div>
     <div class="container">
       <div class="card"><img src="img/Item.Bread.png" alt="" /></div>
       <div class="card"><img src="img/Item.Burger.png" alt="" /></div>
       <div class="card"><img src="img/Item.Cheese.png" alt="" /></div>
       <div class="card"><img src="img/Item.Type.png" alt="" /></div>
     </div>
-    <p id="version">version: 1</p>
-    <p id="colorScheme"></p>
-    <p id="isExpanded"></p>
-    <p id="viewportHeight"></p>
-    <p id="viewportStableHeight"></p>
-    <button id="expand">expand</button>
-    <button id="close">close</button>
-    <button id="showButton">show button</button>
-    <button id="hideButton">hide button</button>
-    <input id="buttonText" />
-    <button id="setText">set text</button>
     <script>
       function init() {
         const {
@@ -81,6 +105,10 @@
       document.querySelector('#close').onclick = close;
       document.querySelector('#showButton').onclick = MainButton.show;
       document.querySelector('#hideButton').onclick = MainButton.hide;
+      document.querySelector('#disableButton').onclick = MainButton.disable;
+      document.querySelector('#enableButton').onclick = MainButton.enable;
+      document.querySelector('#showProgress').onclick = MainButton.showProgress;
+      document.querySelector('#hideProgress').onclick = MainButton.hideProgress;
 
       document.querySelector('#setText').onclick = () => {
         MainButton.setText(document.querySelector('#buttonText').value);

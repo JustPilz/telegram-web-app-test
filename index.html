@@ -83,7 +83,7 @@
       document.querySelector('#hideButton').onclick = MainButton.hide;
 
       document.querySelector('#setText').onclick = () => {
-        MainButton.setText(document.querySelector('#buttonText').textContent);
+        MainButton.setText(document.querySelector('#buttonText').value);
       };
 
       onEvent('viewportChanged', () => {

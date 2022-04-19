@@ -11,7 +11,7 @@
         padding: 0;
       }
       body {
-        background: #888;
+        background: #ddf4ff;
       }
       .container {
         display: flex;
@@ -26,13 +26,14 @@
         width: 64px;
         height: 64px;
       }
+      button {
+        padding: 10px;
+      }
     </style>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-      const { setText } = window.Telegram.WebApp;
-      function buttonClick() {
-        setText('123');
-      }
+      const {} = window.Telegram.WebApp;
+      function buttonClick() {}
     </script>
   </head>
   <body>
@@ -43,10 +44,43 @@
       <div class="card"><img src="img/Item.Type.png" alt="" /></div>
     </div>
     <p id="colorScheme"></p>
-    <button onClick="buttonClick()">setText</button>
+    <p id="isExpanded"></p>
+    <p id="viewportHeight"></p>
+    <p id="viewportStableHeight"></p>
+    <button id="expand">expand</button>
+    <button id="close">close</button>
+    <button id="setText" text="Test">setText</button>
     <script>
-      const tg = window.Telegram.WebApp;
-      document.querySelector('#colorScheme').textContent = tg.colorScheme;
+      const {
+        isExpanded,
+        colorScheme,
+        viewportHeight,
+        viewportStableHeight,
+        expand,
+        close,
+        MainButton,
+      } = window.Telegram.WebApp;
+      document.querySelector(
+        '#colorScheme'
+      ).textContent = `colorScheme: ${colorScheme}`;
+      document.querySelector(
+        '#isExpanded'
+      ).textContent = `isExpanded: ${isExpanded}`;
+      document.querySelector(
+        '#viewportHeight'
+      ).textContent = `viewportHeight: ${viewportHeight}`;
+      document.querySelector(
+        '#viewportStableHeight'
+      ).textContent = `viewportStableHeight: ${viewportStableHeight}`;
+      document.querySelector('#expand').onclick = expand;
+      document.querySelector('#close').onclick = close;
+
+      const setTextEl = document.querySelector('#setText');
+      setTextEl.onclick = () => {
+        const text = setTextEl.getAttribute('text') == 'Test' ? 'Main' : 'Test';
+        setTextEl.setAttribute('text', text);
+        MainButton.setText(text);
+      };
     </script>
   </body>
 </html>

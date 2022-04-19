@@ -43,6 +43,7 @@
       <div class="card"><img src="img/Item.Cheese.png" alt="" /></div>
       <div class="card"><img src="img/Item.Type.png" alt="" /></div>
     </div>
+    <p id="version">version: 1</p>
     <p id="colorScheme"></p>
     <p id="isExpanded"></p>
     <p id="viewportHeight"></p>
@@ -89,6 +90,8 @@
       onEvent('viewportChanged', () => {
         init();
       });
+
+      init();
     </script>
   </body>
 </html>
